@@ -1,0 +1,105 @@
+.sideList {
+  width: 300px;
+  height: 100vh;
+  background-color: #333;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+.contentBox {
+  min-width: 900px;
+  width: 100%;
+  padding-left: 300px;
+  position: relative;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.pageBox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  background-color: aliceblue;
+  align-items: center;
+  width: 100%;
+}
+
+.scrollBox {
+  height: 100%;
+  width: 410px;
+  padding-right: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.goodsBox {
+  position: relative;
+  padding-top: 50px;
+  height: 100vh;
+  background-color: #555;
+  min-width: 600px;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 70px;
+}
+
+.orderBox {
+  min-width: 400px;
+  max-width: 400px;
+  text-align: center;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+.orderItem {
+  display: flex;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  padding-right: 100px;
+  position: relative;
+}
+
+.orderItem:hover {
+  background-color: #eee;
+}
+.orderItem > img {
+  margin-right: 10px;
+}
+
+.summaryBox {
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  background-color: #111;
+  width: 100%;
+}
+
+
+.modal_list{
+  margin-top: 20px;
+}
+.modal_list>li{
+  display: flex;
+  position:relative;
+  padding: 10px 20px;
+}
+.modal_list>li>span{
+  position: absolute;
+  right: 20px;
+  font-size: 14px;
+  color: goldenrod;
+}

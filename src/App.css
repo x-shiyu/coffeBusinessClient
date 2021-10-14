@@ -1,0 +1,234 @@
+.app {
+  height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+  overflow: auto;
+}
+body {
+  min-width: 980px;
+  overflow-x: auto;
+}
+.fix-b {
+  border-top: 1px solid #ddd;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #eee;
+  z-index: 200;
+}
+.keep-alive-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.keep-alive-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.keep-alive-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+html,
+body,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.fx {
+  display: flex;
+}
+.fx-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fx-h-center {
+  align-items: center;
+}
+
+.bgc222 {
+  background-color: #222;
+}
+.bgc333 {
+  background-color: #333;
+}
+.bgc444 {
+  background-color: #444;
+}
+.bgc555 {
+  background-color: #555;
+}
+.bgc666 {
+  background-color: #666;
+}
+.bgc777 {
+  background-color: #666;
+}
+
+.pt10 {
+  padding-top: 10px;
+}
+.pb10 {
+  padding-bottom: 10px;
+}
+.pl20 {
+  padding-left: 20px;
+}
+.pl10 {
+  padding-left: 10px;
+}
+.pr10{
+  padding-right: 10px;
+}
+.pl8 {
+  padding-left: 8px;
+}
+.pr20 {
+  padding-right: 20px;
+}
+.pt20 {
+  padding-top: 20px;
+}
+.p1020 {
+  padding: 10px 20px;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.m10 {
+  margin: 10px;
+}
+.radius5 {
+  border-radius: 5px;
+}
+
+.posa {
+  position: absolute;
+}
+.posf {
+  position: fixed;
+}
+.b0 {
+  bottom: 0;
+}
+.l0 {
+  left: 0;
+}
+
+.wp100 {
+  width: 100%;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix {
+  display: inline-table;
+  *zoom: 1;
+}
+
+.clearfix ::after {
+  display: block;
+  clear: both;
+  height: 0;
+  font-size: 0;
+  visibility: hidden;
+  content: " ";
+}
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 4px !important;
+  background: transparent;
+}
+
+.c111 {
+  color: #111;
+}
+
+.c222 {
+  color: #222;
+}
+
+.c333 {
+  color: #333;
+}
+
+.c444 {
+  color: #444;
+}
+
+.c555 {
+  color: #555;
+}
+
+.c666 {
+  color: #666;
+}
+
+.c777 {
+  color: #777;
+}
+
+.c888 {
+  color: #888;
+}
+
+.cddd {
+  color: #ddd;
+}
+.ceee {
+  color: #eee;
+}
+.cfff {
+  color: #fff;
+}
+.cbbb {
+  color: #bbb;
+}
+
+.f12 {
+  font-size: 12px;
+}
+.f14 {
+  font-size: 14px;
+}
+
+.f30 {
+  font-size: 30px;
+}
+
+.f20{
+  font-size: 20px;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.txc{
+  text-align: center;
+}

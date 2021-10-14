@@ -1,0 +1,18 @@
+.headBox {
+  height: 50px;
+  width: 100%;
+  background-color: green;
+}
+
+.detailHeader {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: #333;
+  color: #aaa;
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

@@ -1,0 +1,77 @@
+
+.order_head{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #333;
+    color: #aaa;
+    font-size: 16px;
+}
+
+.order_box{
+    width: 500px;
+    margin:50px auto;
+    background-color: #444;
+}
+
+.order_list>li{
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #666;
+    padding: 20px;
+    color: #ddd;
+    position: relative;
+}
+.order_list>li>span{
+    position: absolute;
+    right: 20px;
+    top: 24px;
+    color: yellow;
+}
+.order_item_head{
+    display: flex;
+
+}
+.order_item_head>img{
+    margin-right: 10px;
+}
+
+.order_item_head>section{
+    max-width: 260px;
+   
+}
+.order_item_head>section>p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 2em;
+}
+
+.order_detail_list{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.order_detail_list>li{
+    width: 60px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.order_detail_list>li>p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.discount_box{
+    display: flex;
+}
+.discount_box>span{
+    padding: 3px 8px;
+    background-color: goldenrod;
+    font-size: 12px;
+    line-height: 1em;
+    margin-top: 6px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
