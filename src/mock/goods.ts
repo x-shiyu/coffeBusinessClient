@@ -30,7 +30,6 @@ export default [{
     url: '/api/goods/cate',
     method: 'post',
     response: (request: any) => {
-        console.log(request);
         return {
             data: {
                 id: Date.now(),

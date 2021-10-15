@@ -49,4 +49,13 @@ export default [{
         }
     },
     statusCode: 200
+}, {
+    url: '/api/config/accept',
+    method: 'put',
+    response: (request: any) => {
+        return {
+            data: request.body.value
+        }
+    },
+    statusCode: 200
 }]
