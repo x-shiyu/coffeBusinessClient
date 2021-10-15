@@ -4,6 +4,7 @@ import { authInfo } from '../../recoil'
 import { useRecoilState } from 'recoil'
 import { updateUserInfo } from "./services";
 import request from '@/request'
+import { DiscountModal } from "./DiscountModal";
 function PasswordForm({ setVisible }: { setVisible: any }) {
     const [form] = Form.useForm()
     const formItemLayout = {
@@ -83,6 +84,7 @@ function PasswordForm({ setVisible }: { setVisible: any }) {
 export default function User() {
     const [info, setInfo] = useRecoilState(authInfo)
     const [visible, setVisible] = useState<boolean>(false)
+    const [discountShow, setDiscountShow] = useState<boolean>(false)
     const handleAutoAccept = (value: boolean) => {
         request.put('/config/accept', {
             id: info.id,
@@ -103,8 +105,10 @@ export default function User() {
                     <span>自动接单：</span>
                     <Switch checkedChildren="开启" unCheckedChildren="关闭" checked={info.autoAccept} onChange={handleAutoAccept} />
                 </li>
-                <li>
-
+                <li className='txc pt20 p10'>
+                    <Button type='primary' onClick={() => {
+                        setDiscountShow(true)
+                    }}>配置满减</Button>
                 </li>
                 <li className='txc pt10' onClick={() => {
                     setVisible(true)
@@ -124,6 +128,7 @@ export default function User() {
             >
                 <PasswordForm setVisible={setVisible} />
             </Drawer>
+            <DiscountModal visible={discountShow} setVisible={setDiscountShow} />
         </div>
     )
 }
