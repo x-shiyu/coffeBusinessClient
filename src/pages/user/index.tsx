@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Drawer, Form, Button, Input, message } from 'antd'
+import { Drawer, Form, Button, Input, message, Switch } from 'antd'
 import { authInfo } from '../../recoil'
 import { useRecoilState } from 'recoil'
 import { updateUserInfo } from "./services";
@@ -17,14 +17,10 @@ function PasswordForm({ setVisible }: { setVisible: any }) {
 
     const onUpdate = () => {
         form.validateFields().then(async (values) => {
-            const { data } = await updateUserInfo(values)
-            if (data.code === 200) {
+            updateUserInfo(values).then(() => {
                 message.success('修改成功')
                 setVisible(false)
-            } else {
-                message.error(data.code)
-            }
-
+            })
         })
     }
     return (
@@ -85,15 +81,31 @@ function PasswordForm({ setVisible }: { setVisible: any }) {
     )
 }
 export default function User() {
-    const [info] = useRecoilState(authInfo)
+    const [info, setInfo] = useRecoilState(authInfo)
     const [visible, setVisible] = useState<boolean>(false)
+    const handleAutoAccept = (value: boolean) => {
+        request.put('/config/accept', {
+            id: info.id,
+            value
+        }).then(() => {
+            setInfo({
+                ...info,
+                autoAccept: value
+            })
+        })
+    }
     return (
         <div className='bgc444 cddd pt20' style={{ width: "100%" }} >
             <h1 className='cddd txc'>账户信息</h1>
             <ul>
                 <li className='txc pt10'>邮箱：{info.email}</li>
-                <li className='txc pt10'>Vip等级：{info.vip_level}</li>
-                <li className='txc pt10'>积分：{info.points}</li>
+                <li className='txc pt10'>
+                    <span>自动接单：</span>
+                    <Switch checkedChildren="开启" unCheckedChildren="关闭" checked={info.autoAccept} onChange={handleAutoAccept} />
+                </li>
+                <li>
+
+                </li>
                 <li className='txc pt10' onClick={() => {
                     setVisible(true)
                 }}>
