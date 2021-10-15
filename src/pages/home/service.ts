@@ -1,21 +1,5 @@
 import request from '@/request'
-export interface BusinessInfo {
-    name: string,
-    thumb: string,
-    vote: number,
-    monthSell: number,
-    desc: string,
-    id: number,
-    discount?: {
-        full: number
-        minus: number
-    }[]
-}
-
-
-
-
-export interface CoffeOrderInfo {
+export interface CoffeInfo {
     categoryName: string,
     categoryId: number,
     name: string,
@@ -24,16 +8,17 @@ export interface CoffeOrderInfo {
     thumb: string,
     id: number
     canUsePoints: number
-    discount?: {
-        full: number
-        minus: number
-    }[]
 }
 
+export interface CateInfo {
+    id: number,
+    name: string,
+    desc?: string
+}
 
 // 获取所有商家
-export function getBusiness(current = 1, keywords?: string, pageSize = 10): Promise<{ data: { total: number, list: BusinessInfo[] } }> {
-    return request.get('/business', {
+export function getCates(current = 1, keywords?: string, pageSize = 10): Promise<{ data: { total: number, list: CateInfo[] } }> {
+    return request.get('/goods/cate', {
         params: {
             pageNo: current,
             pageSize,
@@ -43,8 +28,8 @@ export function getBusiness(current = 1, keywords?: string, pageSize = 10): Prom
 }
 
 // 获取商家的所有商品
-export function getCoffes(id: number): Promise<{ data: CoffeOrderInfo[] }> {
-    return request.get('/business/coffe', {
+export function getCoffes(id: number): Promise<{ data: CoffeInfo[] }> {
+    return request.get('/cate/coffe', {
         params: {
             id
         }
