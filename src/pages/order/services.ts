@@ -6,7 +6,10 @@ export interface CoffeOrder {
     id: number,
     thumb: string,
     totalPrice: number,
-    status: string,
+    statusInfo: {
+        status: number,
+        statusName: string,
+    },
     discount?: { full: number, minus: number }[]
 }
 export interface ICoffeItem {

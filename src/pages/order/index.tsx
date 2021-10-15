@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
-import { useMount } from 'ahooks'
+import React, { useMemo, useState, useRef } from 'react'
+import { useMount, useUnmount } from 'ahooks'
 import { getOrders, CoffeOrder } from './services'
 import style from './style.module.css'
 import { formatDate } from '../../utils'
-function Order({ data }: { data: CoffeOrder }) {
+import { Button, message, Tabs } from 'antd'
+import request from '@/request'
+
+const { TabPane } = Tabs;
+function Order({ data, loadList }: { data: CoffeOrder, loadList?: any }) {
+    const handleAccept = () => {
+        request.put('/order', {
+            id: data.id
+        }).then(() => {
+            message.success('接单成功！')
+            setTimeout(() => {
+                loadList()
+            }, 1000)
+        })
+    }
     return (
         <div className='bgc444'>
             <ul className={style.order_list}>
                 <li>
-                    <span>{data.status}</span>
+                    <span>{data?.statusInfo?.statusName}</span>
                     <div className={style.order_item_head}>
                         <img src={data.thumb} alt="" width='80' height='80' />
                         <section>
@@ -29,6 +43,10 @@ function Order({ data }: { data: CoffeOrder }) {
                             </li>
                         ))}
                     </ul>
+                    {data?.statusInfo.status === 1 ?
+                        <div className='txc pt10'>
+                            <Button onClick={handleAccept}>确定接单</Button>
+                        </div> : undefined}
                 </li>
             </ul>
         </div>
@@ -38,17 +56,45 @@ function Order({ data }: { data: CoffeOrder }) {
 
 export default function OrderedList() {
     const [list, setList] = useState<CoffeOrder[]>([])
-    useMount(() => {
+    const timerRef = useRef<any>(null)
+    const waitAcceptList = useMemo(() => list.filter(item => item.statusInfo.status === 1), [list])
+    const hadAcceptList = useMemo(() => list.filter(item => item.statusInfo.status === 2), [list])
+    const overList = useMemo(() => list.filter(item => item.statusInfo.status === 3), [list])
+
+    const queryList = () => {
+        clearTimeout(timerRef.current)
         getOrders().then(({ list }) => {
             setList(list)
+            timerRef.current = setTimeout(() => {
+                queryList()
+            }, 10000)
         })
+    }
+
+
+    useMount(() => {
+        queryList()
+    })
+
+    useUnmount(() => {
+        clearTimeout(timerRef.current)
     })
 
     return (
         <div style={{ height: '100vh', overflow: 'auto', width: '100%', background: '#444' }}>
             <h1 className={style.order_head}>订单列表</h1>
             <main className={style.order_box}>
-                {list.map((item) => <Order key={item.id} data={item} />)}
+                <Tabs defaultActiveKey="1" centered tabBarStyle={{ color: '#ddd' }}>
+                    <TabPane tab="待接单" key="1">
+                        {waitAcceptList.map((item) => <Order key={item.id} data={item} loadList={queryList} />)}
+                    </TabPane>
+                    <TabPane tab="已接单" key="2">
+                        {hadAcceptList.map((item) => <Order key={item.id} data={item} />)}
+                    </TabPane>
+                    <TabPane tab="已完结" key="3">
+                        {overList.map((item) => <Order key={item.id} data={item} />)}
+                    </TabPane>
+                </Tabs>
             </main>
         </div>
     )

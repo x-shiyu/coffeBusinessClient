@@ -3,22 +3,32 @@ import { CoffeOrder } from '@/pages/order/services'
 
 // 获取订单列表
 export function getOrders(): { data: CoffeOrder[] } {
+    Random.float(20, 100)
     return mock({
         'list|10-20': [{
             name: '@cword(8, 16)',
             createTime: '@datetime',
             thumb: '@url',
             id: '@id',
-            status: '进行中',
+            'statusInfo|1': [{
+                status: 1,
+                statusName: '待接单'
+            }, {
+                status: 2,
+                statusName: '已接单'
+            }, {
+                status: 3,
+                statusName: '已完结'
+            }],
             'discount|0-5': [{
-                full: Random.integer(20, 40),
-                minus: Random.integer(10, 20)
+                full: '@integer(20, 40)',
+                minus: '@integer(10, 20)'
             }],
             'goodsList|3-10': [{
                 thumb: '@url',
                 name: '@cword(5,10)'
             }],
-            totalPrice: Random.float(20, 100)
+            totalPrice: '@float(20,100)',
         }]
     })
 }
@@ -28,6 +38,15 @@ export default [{
     method: 'get',
     response: ({ query }: any) => {
         return getOrders()
+    },
+    statusCode: 200
+}, {
+    url: '/api/order',
+    method: 'put',
+    response: ({ query }: any) => {
+        return {
+            data: 'ok'
+        }
     },
     statusCode: 200
 }]

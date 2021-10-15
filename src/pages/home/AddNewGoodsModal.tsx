@@ -24,6 +24,8 @@ export function AddNewGoodsModal({ visible, setVisible, addGoods, item }: { visi
                 ...item,
                 thumb: [item.thumb]
             })
+        } else {
+            form.resetFields()
         }
     }, [item, visible])
 
