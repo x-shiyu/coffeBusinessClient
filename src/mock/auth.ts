@@ -3,7 +3,7 @@ export default [{
     method: 'post',
     rawResponse: async (req: any, res: any) => {
         res.setHeader('Content-Type', 'text/plain')
-        res.setHeader('cookie', '1111')
+        res.setHeader('Set-Cookie', ['user=ninja', 'language=javascript'])
         res.statusCode = 200
         res.end(`ok`)
     },
@@ -12,7 +12,7 @@ export default [{
     method: 'post',
     rawResponse: async (req: any, res: any) => {
         res.setHeader('Content-Type', 'text/plain')
-        res.setHeader('cookie', '1111')
+        res.setHeader('Set-Cookie', ['type=ninja', 'language=javascript']);
         res.statusCode = 200
         res.end(`ok`)
     },

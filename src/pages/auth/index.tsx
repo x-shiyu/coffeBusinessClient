@@ -15,14 +15,20 @@ export default function Auth() {
         const form = isLogin ? formLogin : formRegister
         form.validateFields().then((values) => {
             if (isLogin) {
-                request.post('/login', values).then(() => {
+                request.post('/login', {
+                    ...values,
+                    type: 2
+                }).then(() => {
                     message.success('登录成功！')
                     setTimeout(() => {
                         history.push('/')
                     }, 1000)
                 })
             } else {
-                request.post('/register', values).then(() => {
+                request.post('/register', {
+                    ...values,
+                    type: 2
+                }).then(() => {
                     message.success('注册成功！')
                     setTimeout(() => {
                         history.push('/login')
