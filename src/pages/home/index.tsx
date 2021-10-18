@@ -56,13 +56,16 @@ export default function Home() {
     return (
         <main className={style.contentBox}>
             <div className={style.sideList}>
+                <div className='pt20 txc pb20 cddd'>
+                    咖啡类别
+                </div>
                 <div style={{ padding: '20px 10px' }}>
                     <Row>
-                        <Col span={20}>
+                        <Col span={17}>
                             <Input placeholder='请输入' />
                         </Col>
-                        <Col span={3} offset={1}>
-                            <Button type='primary' onClick={onAddNewCate}>+</Button>
+                        <Col span={6} offset={1}>
+                            <Button type='primary' onClick={onAddNewCate}>新增</Button>
                         </Col>
                     </Row>
                 </div>

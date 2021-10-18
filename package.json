@@ -11,6 +11,7 @@
     "@ant-design/icons": "^4.6.4",
     "@types/mockjs": "^1.0.4",
     "@types/react-router-dom": "^5.1.8",
+    "@types/uuid": "^8.3.1",
     "ahooks": "^2.10.9",
     "antd": "^4.16.13",
     "axios": "^0.23.0",
@@ -19,7 +20,8 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.3.0",
-    "recoil": "^0.4.1"
+    "recoil": "^0.4.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/multiparty": "^0.0.33",

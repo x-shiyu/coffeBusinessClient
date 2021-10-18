@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import { message } from 'antd'
 const instance = axios.create({
-    baseURL: 'http://2.0.0.1:8001/api',
+    baseURL: '/api',
     timeout: 1000,
 });
 instance.interceptors.response.use((response) => {

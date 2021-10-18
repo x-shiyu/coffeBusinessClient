@@ -128,7 +128,7 @@ export default function User() {
             >
                 <PasswordForm setVisible={setVisible} />
             </Drawer>
-            <DiscountModal visible={discountShow} setVisible={setDiscountShow} />
+            <DiscountModal visible={discountShow} setVisible={setDiscountShow} initDiscount={info.discount} />
         </div>
     )
 }

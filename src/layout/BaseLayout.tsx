@@ -18,7 +18,7 @@ export default function BaseLayout() {
     useMount(() => {
         if (!userInfo.email) {
             request.get('/user/info').then((response) => {
-                setUserInfo(response.data)
+                setUserInfo(response.data as any)
             })
         }
     })
