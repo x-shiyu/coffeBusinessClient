@@ -10,7 +10,7 @@ instance.interceptors.response.use((response) => {
     }
     return response
 }, (error: AxiosError) => {
-    if (error && error.response && error.response.data) {
+    if (error && error.response) {
         if (error.response.status === 401) {
             setTimeout(() => {
                 location.href = '/login'

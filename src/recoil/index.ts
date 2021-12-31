@@ -4,9 +4,9 @@ interface UserInfo {
     email: string,
     vip_level?: number,
     id: number
-    points?: number
+    abstract_money?: number
     autoAccept?: boolean
-    discount?: {
+    promotion?: {
         full: number,
         minus: number
     }[]

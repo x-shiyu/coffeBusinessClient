@@ -17,19 +17,24 @@ export interface CateInfo {
 }
 
 // 获取所有商家
-export function getCates(current = 1, keywords?: string, pageSize = 10): Promise<{ data: { total: number, list: CateInfo[] } }> {
-    return request.get('/goods/cate', {
-        params: {
-            pageNo: current,
-            pageSize,
-            keywords
-        }
-    })
+export async function getCates(current = 1, keywords?: string, pageSize = 10): Promise<{ data: { total: number, list: CateInfo[] } }> {
+  const response = await   request.get('/goods/cate', {
+    params: {
+        pageNo: current,
+        pageSize,
+        keywords
+    }
+})
+  return  response.map((item:any)=>({
+    name:item.fields.category_name,
+    desc:item.fields.description,
+    id:item.pk
+  }))
 }
 
 // 获取商家的所有商品
 export function getCoffes(id: number): Promise<{ data: CoffeInfo[] }> {
-    return request.get('/cate/coffe', {
+    return request.get('/goods/list/', {
         params: {
             id
         }
