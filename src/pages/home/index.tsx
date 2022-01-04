@@ -25,7 +25,7 @@ function CateList({
         <div
           key={item.id}
           onClick={() => {
-            history.push(`/business/${item.id}`)
+            history.push(`/cate/${item.id}`)
           }}
           className={`p10 m10 ${
             activeBus.toString() === item.id.toString() ? 'bgc777' : 'bgc444'
@@ -99,7 +99,7 @@ export default function Home() {
       </div>
       <div className={style.goodsBox} id="content_box">
         <DetailHeader title="商品" />
-        <Route path="/business/:id">
+        <Route path="/cate/:id">
           <GoodsList setActiveBus={setActiveBus} />
         </Route>
       </div>

@@ -11,6 +11,7 @@ export function AddNewCateModal({
   addCate: any
 }) {
   const [form] = Form.useForm()
+
   const onAddNewCate = () => {
     form.validateFields().then((values) => {
       request.post('/goods/cate/', values).then((response) => {
@@ -22,9 +23,11 @@ export function AddNewCateModal({
 
   useEffect(() => {
     if (!visible) {
-      form.resetFields()
+      form?.resetFields()
     }
   }, [visible])
+
+  
   return (
     <Modal
       title="添加咖啡分类"

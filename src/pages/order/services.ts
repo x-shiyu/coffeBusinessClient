@@ -17,6 +17,6 @@ export interface ICoffeItem {
     name: string
 }
 export function getOrders(): Promise<{ list: CoffeOrder[] }> {
-    return request.get('/order')
+    return request.get('/order/list/')
 }
 

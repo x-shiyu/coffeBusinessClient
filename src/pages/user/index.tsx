@@ -103,7 +103,7 @@ export default function User() {
                 <li className='txc pt10'>邮箱：{info.email}</li>
                 <li className='txc pt10'>
                     <span>自动接单：</span>
-                    <Switch checkedChildren="开启" unCheckedChildren="关闭" checked={info.autoAccept} onChange={handleAutoAccept} />
+                    <Switch checkedChildren="开启" unCheckedChildren="关闭" checked={info.shop_autoAccept} onChange={handleAutoAccept} />
                 </li>
                 <li className='txc pt20 p10'>
                     <Button type='primary' onClick={() => {
@@ -128,7 +128,7 @@ export default function User() {
             >
                 <PasswordForm setVisible={setVisible} />
             </Drawer>
-            <DiscountModal visible={discountShow} setVisible={setDiscountShow} initDiscount={info.discount} />
+            <DiscountModal visible={discountShow} setVisible={setDiscountShow} initDiscount={info.shop_promotion} />
         </div>
     )
 }

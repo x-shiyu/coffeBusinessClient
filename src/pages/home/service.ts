@@ -3,11 +3,12 @@ export interface CoffeInfo {
     categoryName: string,
     categoryId: number,
     name: string,
-    monthSell: number,
+    month_sell: number,
     price: number,
     thumb: string,
     id: number
-    canUsePoints: number
+    discount: number,
+    thumb_url?:string
 }
 
 export interface CateInfo {
@@ -33,10 +34,11 @@ export async function getCates(current = 1, keywords?: string, pageSize = 10): P
 }
 
 // 获取商家的所有商品
-export function getCoffes(id: number): Promise<{ data: CoffeInfo[] }> {
+export function getCoffes(id: number,keywords=''): Promise< CoffeInfo[]> {
     return request.get('/goods/list/', {
         params: {
-            id
+            id,
+            keywords
         }
     })
 }

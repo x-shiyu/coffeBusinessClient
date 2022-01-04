@@ -2,11 +2,13 @@ import { atom } from 'recoil'
 
 interface UserInfo {
     email: string,
-    vip_level?: number,
     id: number
     abstract_money?: number
-    autoAccept?: boolean
-    promotion?: {
+    shop_autoAccept?: boolean,
+    shop_name:string,
+    shop_thumb:string,
+    shop_desc:string,
+    shop_promotion?: {
         full: number,
         minus: number
     }[]
