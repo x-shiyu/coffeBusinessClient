@@ -6,17 +6,19 @@ export interface CoffeOrder {
     id: number,
     thumb: string,
     totalPrice: number,
-    statusInfo: {
-        status: number,
-        statusName: string,
-    },
+    status: number,
+    statusName: string,
     discount?: { full: number, minus: number }[]
 }
 export interface ICoffeItem {
     thumb: string
     name: string
 }
-export function getOrders(): Promise<{ list: CoffeOrder[] }> {
-    return request.get('/order/list/')
+export function getOrders(status?:string): Promise<CoffeOrder[]> {
+    return request.get('/order/list/',{
+      params:{
+        status
+      }
+    })
 }
 
