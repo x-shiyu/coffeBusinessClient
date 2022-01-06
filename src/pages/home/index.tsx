@@ -3,20 +3,22 @@ import { DetailHeader } from '../components'
 import { useMount, usePersistFn, useRequest } from 'ahooks'
 import style from './style.module.css'
 import { getCates, CateInfo } from './service'
-import { Button, Col, Input, Pagination, Row } from 'antd'
+import { Button, Col, Input, message, Pagination, Row } from 'antd'
 import { Route, useHistory } from 'react-router-dom'
 import GoodsList from './GoodsList'
 import { allBusiness } from './atoms'
 import { useRecoilState } from 'recoil'
 import { AddNewCateModal } from './AddNewCateModal'
 const PAGESIZE = 10
-
+import request from '@/request'
 function CateList({
   list,
   activeBus,
+  handleDelete
 }: {
   list: CateInfo[]
-  activeBus: number
+  activeBus: number,
+  handleDelete:any
 }) {
   const history = useHistory()
   return (
@@ -30,7 +32,9 @@ function CateList({
           className={`p10 m10 ${
             activeBus.toString() === item.id.toString() ? 'bgc777' : 'bgc444'
           } radius5 fx pointer`}
+          style={{position:'relative'}}
         >
+           <Button type='primary' size='small' onClick={(ev)=>handleDelete(ev,item.id)} style={{position:'absolute',top:'5px',right:'10px'}}>删除</Button>
           <section className={`ceee pl10 f12`}>
             <h3 className="ceee">{item.name}</h3>
             <p>{item.desc}</p>
@@ -54,14 +58,21 @@ export default function Home() {
     setCates([value, ...cates])
   }
   const handleSearch = async (value: string) => {
-    if (cates.length > 0) {
-      setCates(cates.filter((item) => new RegExp(value).test(item.name)))
-      return
-    }
     setCurrent(current)
-    const data: any = await getCates(current)
+    const data: any = await getCates(current,value)
     setCates(data)
   }
+
+  const handleDelete=(ev:any,id:any)=>{
+    ev.stopPropagation()
+    request.post('/cate/remove/',{
+        id
+    }).then(()=>{
+      message.success('删除成功')
+      handleSearch('')
+    })
+  }
+
 
   useMount(() => {
     handleSearch('')
@@ -84,7 +95,7 @@ export default function Home() {
           </Row>
         </div>
         <div className={style.scrollBox}>
-          <CateList list={cates} activeBus={activeBus} />
+          <CateList list={cates} activeBus={activeBus} handleDelete={handleDelete}/>
         </div>
         {/* <div className={style.pageBox} >
                     <Pagination simple total={total} current={current} onChange={(current) => {

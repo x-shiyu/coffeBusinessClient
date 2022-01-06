@@ -4,8 +4,8 @@ import { CoffeInfo, getCoffes } from './service'
 import { getActiveId } from './hooks'
 import { useHistory, useParams } from 'react-router'
 import { AddNewGoodsModal } from './AddNewGoodsModal'
-import { Button, Col, Input, Row } from 'antd'
-
+import { Button, Col, Input, message, Row } from 'antd'
+import request from '@/request'
 export default function GoodsList({ setActiveBus }: { setActiveBus: any }) {
   const [coffeList, setCoffeList] = useState<CoffeInfo[]>([])
   const [id] = getActiveId()
@@ -42,6 +42,16 @@ export default function GoodsList({ setActiveBus }: { setActiveBus: any }) {
       setCoffeList([value, ...coffeList])
     }
   }
+  const hanldeDelete = (ev:any,id:any)=>{
+    ev.stopPropagation()
+    request.post('/goods/delete/',{
+      id
+    }).then(()=>{
+      message.success('删除成功')
+      handleSearch('')
+    })
+  }
+
   return (
     <div>
       <div className={style.orderBox}>
@@ -72,6 +82,7 @@ export default function GoodsList({ setActiveBus }: { setActiveBus: any }) {
                 setModalShow(true)
               }}
             >
+              <Button onClick={(ev)=>hanldeDelete(ev,item.id)} size='small' type='primary' style={{position:'absolute',top:'20px',right:'20px'}}>删除</Button>
               <img src={item.thumb_url as any} width="80" height="80" />
               <section>
                 <h4 className="f14 cbbb">{item.name}</h4>

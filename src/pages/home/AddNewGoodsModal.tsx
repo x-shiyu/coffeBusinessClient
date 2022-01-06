@@ -93,7 +93,7 @@ export function AddNewGoodsModal({
                 addGoods({
                   ...values,
                   id: response.id,
-                  thumb_url:`/api/file/fetch?id=${response.id}`,
+                  thumb_url:`/api/file/fetch?id=${values.thumb.file_id}`,
                 })
               })
           }
