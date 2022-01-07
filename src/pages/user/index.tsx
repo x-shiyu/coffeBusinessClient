@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil'
 import { updateUserInfo } from './services'
 import request from '@/request'
 import { DiscountModal } from './DiscountModal'
+import { useHistory } from 'react-router'
 function PasswordForm({ setVisible }: { setVisible: any }) {
   const [form] = Form.useForm()
   const formItemLayout = {
@@ -88,6 +89,8 @@ export default function User() {
   const [info, setInfo] = useRecoilState(authInfo)
   const [visible, setVisible] = useState<boolean>(false)
   const [discountShow, setDiscountShow] = useState<boolean>(false)
+  const history = useHistory()
+
   const handleAutoAccept = (value: boolean) => {
     request
       .put('/user/shop/', {
@@ -101,6 +104,15 @@ export default function User() {
           shop_autoAccept: value,
         })
       })
+  }
+
+  const logout = ()=>{
+    request.post('/auth/logout/').then(()=>{
+      message.success('退出成功')
+      setTimeout(()=>{
+        history.push('/login')
+      })
+    })
   }
   return (
     <div className="bgc444 cddd pt20" style={{ width: '100%' }}>
@@ -140,6 +152,12 @@ export default function User() {
         >
           <Button type="primary">修改密码</Button>
         </li>
+        <li
+          className="txc pt10"
+          onClick={logout}
+        >
+          <Button type="primary">退出登录</Button>
+        </li>
       </ul>
       <Drawer
         title={null}
@@ -156,7 +174,6 @@ export default function User() {
       <DiscountModal
         visible={discountShow}
         setVisible={setDiscountShow}
-        initDiscount={info.shop_promotion}
       />
     </div>
   )

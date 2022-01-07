@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import Home from '../pages/home'
 import User from '../pages/user'
 import Order from '../pages/order'
+import Charts from '@/pages/charts'
 import { Route, Switch, useHistory, Redirect } from 'react-router-dom'
 import style from './baselayout.module.css'
 import {
   CoffeeOutlined,
   BarsOutlined,
   SettingOutlined,
+  LineChartOutlined
 } from '@ant-design/icons'
 import { useActiveTab } from '../pages/hooks'
 import coffeIcon from '@/assets/images/coffee.png'
@@ -37,6 +39,11 @@ export default function BaseLayout() {
       title: '订单',
       icon: <BarsOutlined className={style.sideIcon} />,
       key: 'order',
+    },
+     {
+      title: '数据',
+      icon: <LineChartOutlined className={style.sideIcon} />,
+      key: 'charts',
     },
     {
       title: '我的',
@@ -76,6 +83,9 @@ export default function BaseLayout() {
         </Route>
         <Route path="/user" exact>
           <User />
+        </Route>
+        <Route path="/charts" exact>
+          <Charts />
         </Route>
         <Route path="/">
           <Home />

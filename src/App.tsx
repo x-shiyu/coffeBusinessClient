@@ -3,9 +3,7 @@ import BaseLayout from './layout/BaseLayout';
 import { RecoilRoot } from 'recoil';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Auth from './pages/auth';
-
 import './App.css'
-
 function AppChild() {
   return (
     <div className='app'>

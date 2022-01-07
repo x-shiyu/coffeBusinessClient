@@ -1,0 +1,15 @@
+.box{
+  padding: 50px;
+  background-color: #666;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+.box>div{
+  width: 840px;
+  height: 420px;
+  background-color: #fff;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
